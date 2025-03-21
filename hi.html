@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <p id="text"></p>
+        <h4 id="name"></h4>
+        <button id="button" onclick="next()">Next</button>
+    </div>
+    <script>
+        var p=document.getElementById("text")
+        var h4=document.getElementById("name")
+        var index=0;
+        function next(){
+            index=index+1;
+            fetdata()
+
+        }
+
+        async function fetdata() {
+            let url="https://jacintodesign.github.io/quotes-api/data/quotes.json"
+            try{
+            let quo=await fetch(url)
+            let quo2= await quo.json()
+            console.log(quo2)
+            p.textContent=quo2[index].text;
+            h4.textContent=quo2[index].author;
+            console.log(quo2[index])
+            }
+            catch(error){
+            console.log(error)
+            }
+        }
+        fetdata()
+    </script>
+</body>
+</html>
